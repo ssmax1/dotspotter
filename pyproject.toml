@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "dotspotter"
+version = "1.0.0"
+description = "A fluorescence spot detection tool for microscopy images."
+authors = ["Scott Maxwell"]
+readme = "README.md"
+packages = [
+    { include = "dotspotter" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.10,<3.13"
+pandas = "^2.1.1"
+opencv-python = "^4.8.1.78"
+matplotlib = "^3.8.0"
+tqdm = "^4.66.1"
+scikit-image = "^0.22.0"
+numpy = "^1.26.0"
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.9.1"
+pyinstaller = "^6.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
