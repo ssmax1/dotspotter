@@ -28,13 +28,13 @@ if __name__ == "__main__":
     parser.add_argument(
         "--save_images",
         action="store_true",
-        help="Include this flag to save marked images with detected spots.",
+        help="Include this flag to save images overlaid with detected spots and masked areas for QC / review.",
     )
 
     parser.add_argument(
         "--output_count_filename",
-        default="count_results.csv",
-        help="Output CSV filename (default: count_results.csv)",
+        default="spot_counts.csv",
+        help="Output CSV filename (default: spot_counts.csv)",
     )
 
     parser.add_argument(

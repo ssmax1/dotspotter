@@ -133,7 +133,7 @@ def count_spots(args):
             for y, x, s in blobs:
                 cv2.circle(vis, (int(x), int(y)), int(2 * s), (0, 255, 0), 1)
 
-            cv2.imwrite(str(save_path / f"marked_{file_name}"), vis)
+            cv2.imwrite(str(save_path / f"spottedQC_{file_name}"), vis)
 
         return {
             "file_name": file_name,

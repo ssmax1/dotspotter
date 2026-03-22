@@ -20,6 +20,35 @@ dotspotter also includes an artefact‑masking system that automatically removes
 
 ---
 
+## Installation
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/ssmax1/dotspotter.git
+cd dotspotter
+```
+
+### 2. Create and activate a Python environment
+
+Using a dedicated environment avoids dependency conflicts and keeps workflows reproducible.
+
+**Using venv (built‑in Python):**
+```bash
+python3 -m venv dotspotter-env
+source dotspotter-env/bin/activate   # Linux / macOS
+# OR
+dotspotter-env\Scripts\activate      # Windows
+```
+
+### 3. Install dotspotter & dependencies
+
+```bash
+pip3 install .
+```
+
+---
+
+
 ## Usage
 
 ### Basic usage  
