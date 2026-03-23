@@ -34,7 +34,7 @@ Using a dedicated environment avoids dependency conflicts and keeps workflows re
 
 **Using venv (built‑in Python):**
 ```bash
-python3 -m venv dotspotter-env
+python -m venv dotspotter-env
 source dotspotter-env/bin/activate   # Linux / macOS
 # OR
 dotspotter-env\Scripts\activate      # Windows
@@ -43,7 +43,7 @@ dotspotter-env\Scripts\activate      # Windows
 ### 3. Install dotspotter & dependencies
 
 ```bash
-pip3 install .
+pip install .
 ```
 
 ---
@@ -53,14 +53,14 @@ pip3 install .
 
 ### Basic usage  
 ```bash
-python spot_nuclei.py \  
+dotspotter \  
     --img_dir {image folder path}/ \  
     --output_dir {results folder path}/ \  
     --save_images
 ```
 ### With tuning parameters  
 ```bash
-python spot_nuclei.py \  
+dotspotter \  
     --img_dir images/ \  
     --output_dir results/ \  
     --save_images \  
@@ -70,7 +70,7 @@ python spot_nuclei.py \
 ```
 ### Disable artefact masking  
 ```bash
-python spot_nuclei.py \  
+dotspotter \  
     --img_dir images/ \  
     --output_dir results/ \  
     --no_mask
@@ -83,7 +83,7 @@ python spot_nuclei.py \
 |----------|------|---------|-------------|
 | `--img_dir` | path | required | Directory containing input images. Only `.png`, `.jpg`, and `.tif` files are processed. |
 | `--output_dir` | path | `./results` | Directory where the CSV file and optional marked images are saved. |
-| `--output_count_filename` | str | `spotted_counts.csv` | Name of the output CSV file. |
+| `--output_count_filename` | str | `dot_counts.csv` | Name of the output CSV file. |
 | `--save_images` | flag | off | Saves QC images with detected spots overlaid in green. |
 | `--dot_size` | float | 1.5 | Approximate radius (px) of expected nuclei or puncta. |
 | `--sensitivity` | float | 1.0 | Controls detection aggressiveness. Higher values detect fainter spots. |
