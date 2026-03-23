@@ -12,6 +12,8 @@ dist/
 # Virtual environments
 .venv/
 venv/
+.dotspotter-env/
+dotspotter-env/
 
 # Poetry
 .poetry/

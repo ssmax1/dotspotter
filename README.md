@@ -52,12 +52,14 @@ pip3 install .
 ## Usage
 
 ### Basic usage  
+```bash
 python spot_nuclei.py \  
     --img_dir {image folder path}/ \  
     --output_dir {results folder path}/ \  
     --save_images
-
+```
 ### With tuning parameters  
+```bash
 python spot_nuclei.py \  
     --img_dir images/ \  
     --output_dir results/ \  
@@ -65,13 +67,14 @@ python spot_nuclei.py \
     --nucleus_size 1.9 \  
     --sensitivity 1.8 \  
     --preprocess_strength 2.0
-
+```
 ### Disable artefact masking  
+```bash
 python spot_nuclei.py \  
     --img_dir images/ \  
     --output_dir results/ \  
     --no_mask
-
+```
 ---
 
 ## Command‑line Options
@@ -80,9 +83,9 @@ python spot_nuclei.py \
 |----------|------|---------|-------------|
 | `--img_dir` | path | required | Directory containing input images. Only `.png`, `.jpg`, and `.tif` files are processed. |
 | `--output_dir` | path | `./results` | Directory where the CSV file and optional marked images are saved. |
-| `--output_count_filename` | str | `count_results.csv` | Name of the output CSV file. |
+| `--output_count_filename` | str | `spotted_counts.csv` | Name of the output CSV file. |
 | `--save_images` | flag | off | Saves QC images with detected spots overlaid in green. |
-| `--nucleus_size` | float | 1.5 | Approximate radius (px) of expected nuclei or puncta. |
+| `--dot_size` | float | 1.5 | Approximate radius (px) of expected nuclei or puncta. |
 | `--sensitivity` | float | 1.0 | Controls detection aggressiveness. Higher values detect fainter spots. |
 | `--preprocess_strength` | float | 1.0 | Strength of adaptive histogram equalisation and highlight compression. |
 | `--no_mask` | flag | off | Disable artefact masking. Masking is ON by default. |

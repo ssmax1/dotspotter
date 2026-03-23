@@ -10,13 +10,13 @@ VALID_FILE_EXTENSIONS = [".png", ".jpg", ".tif"]
 logger = logging.getLogger(__file__)
 
 
-def count_spots(args):
+def count_dots(args):
     (
         file_name,
         img_dir,
         save_path,
         save_images,
-        nucleus_size,
+        dot_size,
         sensitivity,
         preprocess_strength,
         mask_artifacts,
@@ -84,8 +84,8 @@ def count_spots(args):
         #   BLOB DETECTION
         # ============================================================
 
-        min_sigma = max(0.5, nucleus_size * 0.8)
-        max_sigma = nucleus_size * 1.2
+        min_sigma = max(0.5, dot_size * 0.8)
+        max_sigma = dot_size * 1.2
 
         base_threshold = 0.02
         effective_threshold = base_threshold / sensitivity
@@ -141,7 +141,7 @@ def count_spots(args):
             "masking_used": "yes" if masking_applied else "no",
             "percent_masked": percent_masked,
             "estimated_total_count": estimated_total,
-            "nucleus_size": nucleus_size,
+            "dot_size": dot_size,
             "sensitivity": sensitivity,
             "preprocess_strength": preprocess_strength,
             "masking_enabled": "yes" if mask_artifacts else "no",
