@@ -1,12 +1,10 @@
 [tool.poetry]
 name = "dotspotter"
 version = "1.0.0"
-description = "A fluorescence spot detection tool for microscopy images."
+description = "A fluorescence spot detection tool for microscopy"
 authors = ["Scott Maxwell"]
 readme = "README.md"
-packages = [
-    { include = "dotspotter" }
-]
+packages = [{include = "dotspotter"}] # Added for safety
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.13"
@@ -16,17 +14,16 @@ matplotlib = ">=3.8.0"
 tqdm = ">=4.66.1"
 scikit-image = ">=0.22.0"
 numpy = ">=1.26.0"
-
-[tool.poetry.group.dev.dependencies]
-black = "^23.9.1"
-pyinstaller = "^6.0.0"
+PyQt6 = ">=6.6.0"
 
 [tool.poetry.scripts]
 dotspotter = "dotspotter.cli:main"
+dotspotter-gui = "dotspotter.gui:main"
 
-[tool.poetry.urls]
-Homepage = "https://github.com/ssmax1/dotspotter"
+[tool.poetry.dev-dependencies]
+black = "^23.9.1"
+pyinstaller = "^6.0.0"
 
 [build-system]
-requires = ["poetry-core"]
+requires = ["poetry-core>=1.1.0"]
 build-backend = "poetry.core.masonry.api"

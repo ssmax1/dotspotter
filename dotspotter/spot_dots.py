@@ -85,13 +85,13 @@ def run_spot_dots(
 def main():
     multiprocessing.freeze_support()
 
-    parser = argparse.ArgumentParser(description="Spot and quantify nuclei.")
+    parser = argparse.ArgumentParser(description="Spot and quantify fluorescent “dot‑like” signals like nuclei.")
 
     parser.add_argument("--img_dir", required=True, help="Directory containing images.")
     parser.add_argument(
         "--output_dir",
-        default=Path(os.getcwd()) / "results",
-        help="Directory for results files.",
+        default=Path(os.getcwd()) / "spot_results",
+        help="Directory for spotter output files.",
     )
     parser.add_argument(
         "--save_images",
