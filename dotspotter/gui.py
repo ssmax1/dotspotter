@@ -349,7 +349,7 @@ class DotspotterGUI(QWidget):
         summary_widget.setLayout(summary_layout)
         self.tabs.addTab(summary_widget, "Summary")
 
-        # CONNECT SIGNAL *AFTER* ALL TABS EXIST
+        # CONNECT SIGNAL AFTER ALL TABS EXIST
         self.tabs.currentChanged.connect(self.on_tab_changed)
 
         # Main layout
@@ -373,16 +373,20 @@ class DotspotterGUI(QWidget):
             "highlights": self.highlights.value(),
         }
 
+    # ---------- FIXED ZOOM BEHAVIOUR ----------
     def render_image(self, img: np.ndarray | None, label: QLabel):
         if img is None:
             label.clear()
             return
+
         params = self.get_params()
         adj = apply_display_adjustments(img, params)
         pix = cv_to_qpixmap(adj)
 
-        w = int((label.width() or 512) * self.zoom_factor)
-        h = int((label.height() or 512) * self.zoom_factor)
+        # --- FIX: zoom based on image size, not label size ---
+        h0, w0 = adj.shape[:2]
+        w = int(w0 * self.zoom_factor)
+        h = int(h0 * self.zoom_factor)
 
         label.setPixmap(
             pix.scaled(
