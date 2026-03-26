@@ -41,37 +41,29 @@ def apply_display_adjustments(img: np.ndarray, params: dict) -> np.ndarray:
     if img is None:
         return img
 
-    # Convert to float 0–1
     if img.dtype == np.uint16:
         img_f = img.astype(np.float32) / 65535.0
     else:
         img_f = img.astype(np.float32) / 255.0
 
-    # Contrast
     img_f = img_f * params["contrast"]
-
-    # Brightness
     img_f = img_f + params["brightness"]
 
-    # Shadows lift
     shadow_mask = img_f < 0.5
     img_f[shadow_mask] += params["shadows"] * (0.5 - img_f[shadow_mask])
 
-    # Highlights compression
     highlight_mask = img_f > 0.5
     img_f[highlight_mask] -= params["highlights"] * (img_f[highlight_mask] - 0.5)
 
-    # Gamma
     if params["gamma"] != 1.0:
         img_f = np.power(np.clip(img_f, 0, 1), 1.0 / params["gamma"])
 
-    # Back to 8‑bit
     img8 = np.clip(img_f * 255.0, 0, 255).astype(np.uint8)
     return img8
 
 
 # ------------------------------
-# OpenCV → QPixmap (expects 8‑bit)
+# OpenCV → QPixmap
 # ------------------------------
 def cv_to_qpixmap(img: np.ndarray | None) -> QPixmap:
     if img is None:
@@ -321,7 +313,6 @@ class DotspotterGUI(QWidget):
 
         # Right side tabs
         self.tabs = QTabWidget()
-        self.tabs.currentChanged.connect(self.on_tab_changed)
 
         # Raw image tab
         self.raw_label = QLabel()
@@ -357,6 +348,9 @@ class DotspotterGUI(QWidget):
 
         summary_widget.setLayout(summary_layout)
         self.tabs.addTab(summary_widget, "Summary")
+
+        # CONNECT SIGNAL *AFTER* ALL TABS EXIST
+        self.tabs.currentChanged.connect(self.on_tab_changed)
 
         # Main layout
         main = QHBoxLayout()
@@ -430,9 +424,9 @@ class DotspotterGUI(QWidget):
         )
 
     def on_tab_changed(self, idx: int):
-        if idx == 0:  # raw
+        if idx == 0:
             self.sync_scroll_from_proc()
-        elif idx == 1:  # processed
+        elif idx == 1:
             self.sync_scroll_from_raw()
 
     # ---------- Mouse wheel zoom ----------
